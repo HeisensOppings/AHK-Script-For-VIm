@@ -63,6 +63,11 @@ m::Delete
 .::End
 /::Send, ^{/}
 
+::;::
+    SendInput, {End}();
+    SendInput, {Left}{Left}
+return
+
 ;----vulume control by wheel
 #If MouseIsOver("ahk_class Shell_TrayWnd")
     WheelUp::Send {Volume_Up}
