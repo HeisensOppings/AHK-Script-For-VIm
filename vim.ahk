@@ -1,28 +1,21 @@
+#Hotstring
 #NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
 #Warn ; Enable warnings to assist with detecting common errors.
 SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #MaxThreadsPerHotkey 2
-Toggle = 0
-B::
-    Toggle := !Toggle
-    If Toggle
-        Send, {LButton Down}
-    else
-        Send, {LButton Up}
-    #NoTrayIcon
-    SetCapsLockState, AlwaysOff
-    Suspend, On
-    ;Command mode
+#NoTrayIcon
+SetCapsLockState, AlwaysOff
+Suspend, On  ; start as normal mode
+
 CapsLock::
-    Suspend, Off
-    commandkey = %A_ThisHotkey%
-    CoordMode, ToolTip, Screen
-    ToolTip, Command mode, 0, 1050
-    Keywait, %commandkey%
-    if A_ThisHotkey <> %commandkey%
-    {
-        Gosub Typingmode
+    Suspend, Permit  ; allow Suspend to switch
+    if (A_IsSuspended) {
+        Suspend, Off
+        ToolTip, Command mode, 0, 1050
+    } else {
+        Suspend, On
+        ToolTip
     }
 return
 
@@ -46,7 +39,7 @@ a::Alt
 s::Ctrl
 d::Shift
 F::Send, ^{d}
-G::Click, 2
+G::Click, WheelUp
 h::Left
 j::Down
 k::Up
@@ -56,17 +49,13 @@ Z::Send, ^{z}
 X::Send, ^{x}
 C::Send, ^{c}
 V::Send, ^{v}
-B::RButton
+B::Click, WheelDown
 n::PgDn
 m::Delete
 ,::Home
 .::End
 /::Send, ^{/}
-
-::;::
-    SendInput, {End}();
-    SendInput, {Left}{Left}
-return
+`;::Click, 1
 
 ;----vulume control by wheel
 #If MouseIsOver("ahk_class Shell_TrayWnd")
