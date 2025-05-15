@@ -1,15 +1,18 @@
-# AHK-Script-For-VIm
-AHK Script for vim on windows
+# AHK Script for Vim
 
-# How to use
-Download and install AHK exe. run script, You can use 'Convert ahk to exe' to convert script, then add exe to 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp' to Auto-Start.
+This is an AutoHotkey (AHK) script inspired by Vim, designed for Windows. Note that it does not fully replicate Vim's functionality but serves as a reference.
 
-# Feature
-Start script: Click CapsLock
+## How to Use
 
-End script: Click i
+1. Install [AutoHotkey](https://www.autohotkey.com/).
+2. Run the script.
 
-hjkl like vim...
+To convert the script to an executable, use Ahk2Exe. After conversion, add the executable to:
+`C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp` for automatic startup.
 
-Updating...
+### Script Controls
+- **Start Script**: Press `CapsLock`
+- **End Script**: Press `i` or `o`
+
+## Updating
 ![map](https://raw.githubusercontent.com/HeisensOppings/AHK-Script-For-VIm/main/map.png)

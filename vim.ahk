@@ -5,8 +5,17 @@ SendMode Input ; Recommended for new scripts due to its superior speed and relia
 SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #MaxThreadsPerHotkey 2
 #NoTrayIcon
-SetCapsLockState, AlwaysOff
-Suspend, On  ; start as normal mode
+; SetCapsLockState, AlwaysOff
+; Suspend, On  ; start as normal mode
+CapsLockState := GetKeyState("CapsLock", "T")
+if (CapsLockState) {
+    SetCapsLockState, Off
+    Suspend, Off
+    ToolTip, Command mode, 0, 1050
+} else {
+    Suspend, On
+    ToolTip
+}
 
 CapsLock::
     Suspend, Permit  ; allow Suspend to switch
@@ -35,8 +44,8 @@ i::Gosub TypingMode
 o::Send, {End}{Enter}{i}
 p::BackSpace
 
-a::Alt
-s::Ctrl
+a::Ctrl
+s::Alt
 d::Shift
 F::Send, ^{d}
 G::Click, WheelUp
